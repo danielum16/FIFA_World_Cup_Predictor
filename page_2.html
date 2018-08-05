@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Group 25</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .col-centered {
+            margin: 0 auto;
+            float: none;
+        }
+    </style>
+    <link rel="stylesheet" href="css/atom-one-light.css">
+  </head>
+
+  <body>
+    <div class="container" style="margin-top:25px; margin-bottom: 100px;">
+    <div class="row">
+    <div class="col-md-10 col-centered">
+        <nav style="margin-bottom: 25px;">
+            <a href="index.html">Exosuit Slope Detection</a>
+            &nbsp;|&nbsp;<span>Introduction and EDA</span>
+            &nbsp;|&nbsp;<a href="page_3.html">Literature Review and Related Work</a>
+            &nbsp;|&nbsp;<a href="page_4.html">Models</a>
+            &nbsp;|&nbsp;<a href="page_5.html">Results and Conclusion</a>
+        </nav>
+
+      <h1>Introduction and EDA</h1>
+      <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
+
+      <hr>
+
+      <h4>Contents</h4>
+      <ol>
+          <a href="#introduction"><li>Introduction and Description of Data</li></a>
+          <ol>
+              <a href="#experiment"><li>Experiment Details</li></a>
+              <a href="#description"><li>Description of Raw Data</li></a>
+          </ol>
+
+          <a href="#eda"><li>EDA</li></a>
+          <ol>
+              <a href="#eda-3"><li>EDA for 3-Class Classification (flatground, uphill, downhill)</li></a>
+              <a href="#eda-7"><li>EDA for 7-Class Classification/Regression</li></a>
+          </ol>
+      </ol>
+
+      <hr>
+
+      <h2 id="introduction">1. Introduction and Description of Data</h2>
+      <p>The Hip-Only soft exoskeleton has 3 IMUs (MTi-3 AHRS, Xsens Technologies B.V., Enschede, Netherlands) on the abdomen and the anterior part of each thigh. Each IMU can measure 3-axes linear and angular motion using built in accelerometer and gyroscopes. The outputs of the IMU are relevant to the suit because it gives information about the phase of user’s gait cycle which determines when assistance should be provided. An image of the particular IMU we are using is shown below.</p>
+
+      <br/>
+
+      <h4 id="experiment">1) Experiment Details</h4>
+      <p>The sloped walking protocol involved 6 subjects walking at 7 different conditions. The walking slope is collected at discrete slopes of -10%, -5%, 0%, 5%, 10%, 15%, and 20% set by the treadmill. And the suit data was collected at various speeds of 1 m/s, 1.5 m/s, …, 3.5 m/s, 4 m/s.</p>
+
+      <img class="img-fluid" src="images/summary_table.png">
+      <p>Fig 1. Experiment Setup</p>
+
+      <br/>
+
+      <h4 id="description">2) Description of Raw Data</h2>
+      <p>The Hip-Only soft exoskeleton has 3 IMUs (MTi-3 AHRS, Xsens Technologies B.V., Enschede, Netherlands) on the abdomen and the anterior part of each thigh. Each IMU can measure 3-axes linear and angular motion using built in accelerometer and gyroscopes. The outputs of the IMU are relevant to the suit because it gives information about the phase of user’s gait cycle which determines when assistance should be provided. An image of the particular IMU we are using is shown below.</p>
+      <p>During the sloped walking experiments on the treadmill, only certain IMU outputs are selected for streaming. The roll, pitch and yaw angles, angular velocity and linear accelerations were collected. Note the yaw angle is interpreted as heading and measured in the East-North-Up coordinate system, whereas the roll and pitch angles are measured in the local coordinate frame. The sequence of rotation for Euler angles uses the aerospace convention for rotation from global frame to location frame. Referencing the local coordinate frame in Fig. 1, the IMU sensor is worn such that x axis is normal to the sagital plane and points medially, y axis is normal to the coronal plane and points anteriorially, and z axis is normal to the transverse plane and points vertically down.</p>
+
+      <hr>
+
+      <h2 id="eda">2. EDA</h2>
+
+      <br/>
+
+      <h4 id="eda-3">1) EDA for 3-Class Classification (flatground, uphill, downhill)</h4>
+      <p>Methods for Initial Data Exploration: First for our classification problem, we split the data into three sets - flat ground, uphill, and downhill, denoted by class 0, class 1 and class -1 respectively. We plotted the IMU data of each gait cycle (50 features per gait cycle), and compared the three groups against each other.</p>
+
+      <pre><code class="py">
+df = pd.read_csv('Data/dataAll_csv8_withMM.csv')
+
+df["slope_class"] = 0
+df["slope_class"][df['ref_slope'] < 0] = -1
+df["slope_class"][df['ref_slope'] == 0]= 0
+df["slope_class"][df['ref_slope'] > 0]= 1
+      </code></pre>
+
+      <h4 id="eda-7">2) EDA for 7-Class Classification/Regression</h4>
+      <p>Secondly, we performed some data exploration for the regression problem. Even though the data is collected at discrete slopes, the relationship between certain predictors and walking slope can still be shown.</p>
+
+      <pre><code class="py">
+  df_n10 = df[df['ref_slope'] == -10]
+  df_n5 = df[df['ref_slope'] == -5]
+  df_0 = df[df['ref_slope'] == 0]
+  df_5 = df[df['ref_slope'] == 5]
+  df_10 = df[df['ref_slope'] == 10]
+  df_15 = df[df['ref_slope'] == 15]
+  df_20 = df[df['ref_slope'] == 20]
+
+
+  msk1 = np.random.rand(len(df_n10)) < 1000 /len(df_n10)
+  msk2 = np.random.rand(len(df_n5)) < 1000 /len(df_n5)
+  msk3 = np.random.rand(len(df_0)) < 1000 /len(df_0)
+  msk4 = np.random.rand(len(df_5)) < 1000 /len(df_5)
+  msk5 = np.random.rand(len(df_10)) < 1000 /len(df_10)
+  msk6 = np.random.rand(len(df_15)) < 1000 /len(df_15)
+  msk7 = np.random.rand(len(df_20)) < 1000 /len(df_20)
+
+  df_n10 = df_n10[msk1]
+  df_n5 = df_n5[msk2]
+  df_0 = df_0[msk3]
+  df_5 = df_5[msk4]
+  df_10 = df_10[msk5]
+  df_15 = df_15[msk6]
+  df_20 = df_20[msk7]
+      </code></pre>
+
+      <pre><code class="py">
+! pip install colour
+
+from colour import Color
+red = Color("red")
+colors = list(red.range_to(Color("green"),7))
+    </code></pre>
+
+    </div> <!-- /col-md-10 -->
+    </div> <!-- /row -->
+    </div> <!-- /container -->
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</html>
