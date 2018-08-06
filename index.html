@@ -36,18 +36,21 @@
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac fermentum arcu.</p>
       <hr>
 
-      <h4>Motivation</h4>
-      <p>Predicting and classifying human motion using wearable sensors have a wide variety of applications. These applications span from development of entertainment technology to assistive devices. One particularly interesting use case is in combining an gait classification model with soft exoskeletons in order to determine the best types of assistance at different walking or running conditions. In particular, the necessary assistance to the hip joint is highly dependent on the walking slope. In this project, we aim to develop a walking slope classifer.</p>
+      <h4>Background</h4>
+      <p>The World Cup is the most prominent sporting event in the world, with over 1 billion people tuning in. The bare-bones nature of soccer allows for it to be easily understood and adopted, allows for it to be played by almost anyone (regardless of socioeconomic background), and it’s exciting atmosphere allows for it to be enjoyed by all. The World Cup has become a worldwide cultural phenomenon and the stakes to win are high; the winning nation receives a great deal of international fame and prestige. Recently, the World Cup has been growing in international recognition and viewership, and even though the World Cup has garnered such a huge viewer-base, the state of analytics on the World Cup (and soccer, in general) matches is archaic, relative to other sports such as Basketball and American Football. Soccer and World Cup analytics are on the rise, however, within the scope of this project, we plan on making a prediction model to contribute to these analytics even further.</p>
 
-      <p>Currently the hip-only soft exoskeleton suit from Harvard Biodesign Lab uses foot IMUs to estimate the slope of the ground; however, it would be preferred to remove this sensor in the suit to reduce suit complexity and donning time. There are other parameters the system collects, such as torso orientation and thigh angles, that could be used to predict walking slope. Our project aims to explore this possibility and build the best predictor possible using the data available.</p>
+      <h4>Motivation</h4>
+      <p>Shiv is an avid soccer player and Daniel, although he doesn’t play soccer, follows professional and college soccer enthusiastically. Krupesh is also very interested in sports statistics and regularly plays fantasy sports like NFL and Cricket.  Pegah is also a fan of soccer and has been following 2018 World Cup with such passion. We would love to delve into the world of sports analytics, and become more informed on how professional statisticians ‘conjure-up’ their predictions, while also learning why many of their guesses fail. We are excited to dig-into the many grey-area factors that are often overlooked by common World Cup match predictions and (hopefully) create a great model that creates accurate predictions and allows us to impress our friends at future World Cup viewing parties. </p>
 
       <hr>
 
       <h4>Problem Statement</h4>
-      <p>How to predict walking slope using Hip-Only exosuit data with no foot IMU?</p>
+      <p>(Goals)</p>
       <ol>
-          <li>Solve as a classification problem of classifying flat ground, uphill or downhill.</li>
-          <li>solve as a regression problem to estimate the exact walking slope and a classification problem with 7 classes at discrete slopes. Compare the performance of the two methods.</li>
+          <li>Preparation of Data: Construct a comprehensive dataset with pre-processed features/predictors scraped from our data sources. Scrape web sources for game-day externalities that contribute to match results and weigh the most important factors higher, and insignificant factors lower, to prevent over-fitting. Also, weigh more recent match results higher than less recent results. </li>
+          <li>Construction of Model (1): Construct a prediction model of the 2018 World Cup that that can accurately create a complete framework of national teams, from a variety of sources (see Resources and Data below), including the current FIFA rankings.</li>
+          <li>Construction of Model (2): Construct a prediction model of the 2018 World Cup from scratch (without relying on FIFA rankings), and rankings from other organizations.</li>
+          <li>Comparing Results: Compare the results from our full model (without FIFA rankings), and the model that incorporated FIFA rankings to other prediction models, as well as real world results, to see how they differ.</li>
       </ol>
 
       <img class="img-fluid" src="images/summary_table.png">
