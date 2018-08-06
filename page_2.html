@@ -33,7 +33,7 @@
         </nav>
 
       <h1>Introduction and EDA</h1>
-      <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
+      <p class="lead">Initial Analysis and Visualization of our Data</p>
 
       <hr>
 
@@ -41,14 +41,16 @@
       <ol>
           <a href="#introduction"><li>Introduction and Description of Data</li></a>
           <ol>
-              <a href="#experiment"><li>Experiment Details</li></a>
-              <a href="#description"><li>Description of Raw Data</li></a>
+              <a href="#experiment"><li>Goal One</li></a>
+              <a href="#description"><li>Goal Two</li></a>
           </ol>
 
           <a href="#eda"><li>EDA</li></a>
           <ol>
-              <a href="#eda-3"><li>EDA for 3-Class Classification (flatground, uphill, downhill)</li></a>
-              <a href="#eda-7"><li>EDA for 7-Class Classification/Regression</li></a>
+              <a href="#eda-1"><li>EDA for Wealth</li></a>
+              <a href="#eda-2"><li>EDA for Home Win</li></a>
+              <a href="#eda-3"><li>EDA for Population</li></a>
+              <a href="#eda-4"><li>EDA for Champion's Curse</li></a>
           </ol>
       </ol>
 
@@ -64,9 +66,6 @@
       <h4 id="experiment">1) First Goal</h4>
       <p>Following this path, we in this project have set our goal to give a ranking for the teams based on regression models. Based on the data we have collected from different websites such as fifa.com, sofifa.com, squawka and whoscored, and similar projects in github and kaggle, we build our model from statistical analysis of teams, players and goalies. The visualization of our data will be in the latter part of this document.</p>
 
-      <img class="img-fluid" src="images/summary_table.png">
-      <p>Fig 1. Experiment Setup</p>
-
       <br/>
 
       <h4 id="description">2) Second Goal</h2>
@@ -74,59 +73,56 @@
 
       <hr>
 
-      <h2 id="eda">2. EDA</h2>
+      <h2 id="eda">Wealth EDAs</h2>
 
       <br/>
 
-      <h4 id="eda-3">1) EDA for 3-Class Classification (flatground, uphill, downhill)</h4>
-      <p>Methods for Initial Data Exploration: First for our classification problem, we split the data into three sets - flat ground, uphill, and downhill, denoted by class 0, class 1 and class -1 respectively. We plotted the IMU data of each gait cycle (50 features per gait cycle), and compared the three groups against each other.</p>
+      <h4 id="eda-1">1) Wealth (Club) vs Player Age and Quality EDAs</h4>
+      <p>The following three visualizations used club wealth information to correlate wealth with player age and quality.</p>
 
-      <pre><code class="py">
-df = pd.read_csv('Data/dataAll_csv8_withMM.csv')
+      <p>Fig 1.</p>
+      <img class="img-fluid" src="images/Wealth1.png">
+      <p></p>
+      <p>Fig 2. and Fig 3.</p>
+      <img class="img-fluid" src="images/Wealth2and3.png">
+      
+      <p></p>
+      <h4 id="eda-1">2) Wealth (Country) vs Player Age and Quality EDAs</h4>
+      <p>The following two visualizations used country GDP information to correlate wealth with country-team rank and player age.</p>
 
-df["slope_class"] = 0
-df["slope_class"][df['ref_slope'] < 0] = -1
-df["slope_class"][df['ref_slope'] == 0]= 0
-df["slope_class"][df['ref_slope'] > 0]= 1
-      </code></pre>
-
-      <h4 id="eda-7">2) EDA for 7-Class Classification/Regression</h4>
-      <p>Secondly, we performed some data exploration for the regression problem. Even though the data is collected at discrete slopes, the relationship between certain predictors and walking slope can still be shown.</p>
-
-      <pre><code class="py">
-  df_n10 = df[df['ref_slope'] == -10]
-  df_n5 = df[df['ref_slope'] == -5]
-  df_0 = df[df['ref_slope'] == 0]
-  df_5 = df[df['ref_slope'] == 5]
-  df_10 = df[df['ref_slope'] == 10]
-  df_15 = df[df['ref_slope'] == 15]
-  df_20 = df[df['ref_slope'] == 20]
+      <p>Fig 4.</p>
+      <img class="img-fluid" src="images/Wealth4.png">
+      <p></p>
+      <p>Fig 5.</p>
+      <img class="img-fluid" src="images/Wealth5.png">
 
 
-  msk1 = np.random.rand(len(df_n10)) < 1000 /len(df_n10)
-  msk2 = np.random.rand(len(df_n5)) < 1000 /len(df_n5)
-  msk3 = np.random.rand(len(df_0)) < 1000 /len(df_0)
-  msk4 = np.random.rand(len(df_5)) < 1000 /len(df_5)
-  msk5 = np.random.rand(len(df_10)) < 1000 /len(df_10)
-  msk6 = np.random.rand(len(df_15)) < 1000 /len(df_15)
-  msk7 = np.random.rand(len(df_20)) < 1000 /len(df_20)
+      <h2 id="eda">Home-Win Advantage EDAs</h2>
 
-  df_n10 = df_n10[msk1]
-  df_n5 = df_n5[msk2]
-  df_0 = df_0[msk3]
-  df_5 = df_5[msk4]
-  df_10 = df_10[msk5]
-  df_15 = df_15[msk6]
-  df_20 = df_20[msk7]
-      </code></pre>
+      <br/>
 
-      <pre><code class="py">
-! pip install colour
+      <h4 id="eda-2">1) Neutral Games vs Biased Games</h4>
+      <p>The following two piecharts are simply to understand Kaggle's dataset better.</p>
 
-from colour import Color
-red = Color("red")
-colors = list(red.range_to(Color("green"),7))
-    </code></pre>
+      <p>Fig 6.</p>
+      <img class="img-fluid" src="images/HomeWin1.png">
+      <p></p>
+      <p>Fig 7.</p>
+      <img class="img-fluid" src="images/HomeWin2.png">
+      
+      <p></p>
+      <h4 id="eda-2">2) Match Success by Venue</h4>
+      <p>The following visualizations show the ratio of matches won by neutrality of venue and friendly vs tournament.</p>
+
+      <p>Fig 8.</p>
+      <img class="img-fluid" src="images/HomeWin4.png">
+      <p></p>
+      <p>Fig 9. and Fig 10.</p>
+      <img class="img-fluid" src="images/HomeWin5.png">
+      <p></p>
+      <p>Fig 11. and Fig 12.</p>
+      <img class="img-fluid" src="images/HomeWin6.png">
+      <p></p>
 
     </div> <!-- /col-md-10 -->
     </div> <!-- /row -->

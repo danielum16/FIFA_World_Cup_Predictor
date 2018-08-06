@@ -52,6 +52,15 @@
       <small>Table 1. Summary of All Methods and Findings</small>
       <img class="img-fluid" src="images/summary_table.png">
 
+      <pre><code class="py">
+df = pd.read_csv('Data/dataAll_csv8_withMM.csv')
+
+df["slope_class"] = 0
+df["slope_class"][df['ref_slope'] < 0] = -1
+df["slope_class"][df['ref_slope'] == 0]= 0
+df["slope_class"][df['ref_slope'] > 0]= 1
+      </code></pre>
+
       <hr>
 
       <h2>Mixed: mobile and desktop</h2>
