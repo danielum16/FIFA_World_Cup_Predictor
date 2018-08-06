@@ -55,21 +55,22 @@
       <hr>
 
       <h2 id="introduction">1. Introduction and Description of Data</h2>
-      <p>The Hip-Only soft exoskeleton has 3 IMUs (MTi-3 AHRS, Xsens Technologies B.V., Enschede, Netherlands) on the abdomen and the anterior part of each thigh. Each IMU can measure 3-axes linear and angular motion using built in accelerometer and gyroscopes. The outputs of the IMU are relevant to the suit because it gives information about the phase of user’s gait cycle which determines when assistance should be provided. An image of the particular IMU we are using is shown below.</p>
+      <p>Like all previous FIFA World Cup and other sporting events, the 2018 Russia tournament has caught a lot of attention from several statisticians around the world. The major approaches for modeling the soccer data, however, can be divided into two major categories:</p>
+      <li>Creating models based on team and player statistics from the bookie’ odds and sports gambling websites.</li>
+      <li>Creating models based on a pairwise analysis using data that contains the number of goals scored in single matches by each team.</li>
 
       <br/>
 
-      <h4 id="experiment">1) Experiment Details</h4>
-      <p>The sloped walking protocol involved 6 subjects walking at 7 different conditions. The walking slope is collected at discrete slopes of -10%, -5%, 0%, 5%, 10%, 15%, and 20% set by the treadmill. And the suit data was collected at various speeds of 1 m/s, 1.5 m/s, …, 3.5 m/s, 4 m/s.</p>
+      <h4 id="experiment">1) First Goal</h4>
+      <p>Following this path, we in this project have set our goal to give a ranking for the teams based on regression models. Based on the data we have collected from different websites such as fifa.com, sofifa.com, squawka and whoscored, and similar projects in github and kaggle, we build our model from statistical analysis of teams, players and goalies. The visualization of our data will be in the latter part of this document.</p>
 
       <img class="img-fluid" src="images/summary_table.png">
       <p>Fig 1. Experiment Setup</p>
 
       <br/>
 
-      <h4 id="description">2) Description of Raw Data</h2>
-      <p>The Hip-Only soft exoskeleton has 3 IMUs (MTi-3 AHRS, Xsens Technologies B.V., Enschede, Netherlands) on the abdomen and the anterior part of each thigh. Each IMU can measure 3-axes linear and angular motion using built in accelerometer and gyroscopes. The outputs of the IMU are relevant to the suit because it gives information about the phase of user’s gait cycle which determines when assistance should be provided. An image of the particular IMU we are using is shown below.</p>
-      <p>During the sloped walking experiments on the treadmill, only certain IMU outputs are selected for streaming. The roll, pitch and yaw angles, angular velocity and linear accelerations were collected. Note the yaw angle is interpreted as heading and measured in the East-North-Up coordinate system, whereas the roll and pitch angles are measured in the local coordinate frame. The sequence of rotation for Euler angles uses the aerospace convention for rotation from global frame to location frame. Referencing the local coordinate frame in Fig. 1, the IMU sensor is worn such that x axis is normal to the sagital plane and points medially, y axis is normal to the coronal plane and points anteriorially, and z axis is normal to the transverse plane and points vertically down.</p>
+      <h4 id="description">2) Second Goal</h2>
+      <p>In our second goal, we are trying to understand how FIFA ranking and other potential response variables could lead us to predict the results of the tournament. We can use various statistics from each team and each player to construct a model as close to reality as possible. This task will need different modeling of the data to be compared against each other, as well as various feature engineering and feature extraction techniques. We try to make our model work the best with fewest features as possible, to avoid having a complicated model.</p>
 
       <hr>
 
