@@ -37,28 +37,52 @@
 
       <hr>
 
-      <h2>Five grid tiers</h2>
-      <p>There are five tiers to the Bootstrap grid system, one for each range of devices we support. Each tier starts at a minimum viewport size and automatically applies to the larger devices unless overridden.</p>
+      <h4>Contents</h4>
+      <ol>
+          <a href="#Lit1"><li>Probabilistic Forecasts for the 2018 FIFA World Cup Based on the Bookmaker Consensus Model</li></a>
+          <a href="#Lit2"><li>On Elo Based Prediction Models for the FIFA World Cup</li></a>
+          <a href="#Lit3"><li>Prediction of the FIFA World Cup 2018 – A random forest approach with an emphasis on estimated teamability parameters</li></a>
+      </ol>
+      <p>We looked at the State-of-the-Art approaches before diving into modeling the World Cup with the data we had collected. This was done in order to build a foundation for our model such that it could excel in areas that previous models had trouble with.</p>
 
-      <h2>Full width, single column</h2>
-      <p class="text-warning">No grid classes are necessary for full-width elements.</p>
-
-      <hr>
-
-      <h2>Two columns with two nested columns</h2>
-      <p>Per the documentation, nesting is easy—just put a row of columns within an existing column. This gives you two columns <strong>starting at desktops and scaling to large desktops</strong>, with another two (equal widths) within the larger column.</p>
-      <p>At mobile device sizes, tablets and down, these columns and their nested columns will stack.</p>
-
-      <small>Table 1. Summary of All Methods and Findings</small>
-      <img class="img-fluid" src="images/summary_table.png">
+      <br/>
 
       <hr>
 
-      <h2>Mixed: mobile and desktop</h2>
-      <p>The Bootstrap v4 grid system has five tiers of classes: xs (extra small), sm (small), md (medium), lg (large), and xl (extra large). You can use nearly any combination of these classes to create more dynamic and flexible layouts.</p>
-      <p>Each tier of classes scales up, meaning if you plan on setting the same widths for xs and sm, you only need to specify xs.</p>
+      <h4 id="Lit1">1. Probabilistic Forecasts for the 2018 FIFA World Cup Based on the Bookmaker Consensus Model</h4>
+      <p>Zeileis A, Leitner C, Hornik K (2018). “Probabilistic Forecasts for the 2018 FIFA World Cup Based on the Bookmaker Consensus Model”, Working Paper 2018-09, Working Papers in Economics and Statistics, Research Platform Empirical and Experimental Economics, Universität Innsbruck. https://doi.org/10.1016/j.ijforecast.2009.10.001</p>
 
-      <hr>
+      <p>This work details the use of a bookmaker consensus model to predict the 2018 World Cup. This model, proposed by Hornik Leitner, calculates a model-based average of the log-odds different teams have of winning. The average is based on quoted bookmakers odds.</p>
+
+      <p>The results of the aggregation of the above two models was very good; it predicted the winner of the 2010 World Cup and 3 of the 4 semi finalists at the 2014 World Cup.</p>
+
+      <p>One of the limitations I noticed was that, because this model only used past results as predictors, the future performance most likely will suffer, because of the lack of important but constantly changing variables that include player statistics.</p>
+
+      <br/>
+
+      <h4 id="Lit2">2. On Elo Based Prediction Models for the FIFA World Cup</h4>
+      <p>Gilch A, Lorenz, Muller, Sebastian (2018-06). “On Elo Based Prediction Models for the FIFA World Cup”, Working Paper 2018-09, Universität Passau. https://arxiv.org/pdf/1806.01930.pdf</p>
+
+      <p>This work dives deeper into the concept of pairwise ratings of countries as a basis of simulating the outcome of the 2018 World Cup. It discusses the unpredictability of the events that can determine the outcome of a game (extraordinary individual performances, or injuries and errors). It also talks about how underdogs are known to win tournaments, while powerhouse teams might drop out very early in the tournament.</p>
+
+      <p>The main idea of Elo based prediction models is that they calculate the probabilities of winning for each team, against each other team. There is a lot of room for creativity in this type of model, especially with feature representation in the individual predictions.</p>
+
+      <p>The foundation of their models were that they used pre-determined Elo rankings from elorating.net. Next, they used a Poisson regression model to determine the outcome of a match between teams A and B, by including several other soccer-specific variables. They were able to get an accuracy of 56%, which is impressive given the aforementioned unpredictable factors that determine the outcome of a match.</p>
+
+      <br/>
+
+      <h4 id="Lit3">3. Prediction of the FIFA World Cup 2018 – A random forest approach with an emphasis on estimated team ability parameters</h2>
+      <p>Andreas, Groll, Ley, Christophe, Schauberger, Gunther, Eetvelde, Hans V (2018-06-08). “Prediction of the FIFA World Cup 2018 – A random forest approach with an emphasis on estimated team ability parameters”. https://arxiv.org/pdf/1806.03208.pdf</p>
+
+      <p>This paper mainly focuses on the Random Forest Classifier approach to predicting the World Cup winner based on a collection of features that the authors of the paper aggregated into one dataset, and trained on. Due to the randomness of the Random Forest approach, they simulated the tournament 100,000 times, and ranked the most likely candidates of being the winner.</p>
+
+      <p>In terms of features, the paper nicely listed out 16 features organized by economic factors, sportive factors, home advantage, team structure, and coaching statistics. In the Economic factors, the GDP per capita and population are used as features. In the sportive factors, the FIFA ranking is used and the bookmakers odds are used. In terms of Home advantage, Host dummy variable is used and the Confederation/Continent of is also used. In terms of team structure, the variables used are: maximum number of teammates playing together from the same club in each national team, average age, number of champions league players, and foreign players. Finally, age and duration of tenure are used for the coach statistics.</p>
+
+      <p>In terms of data, this paper utilized the available data from FIFA from the past 8 World Cups, with the reasoning that older data is much obsolete and unnecessary. They also use the FIFA ranking dataset. Finally they use a team squad strength dataset, that was calculated with a separate Poisson ranking model.</p>
+
+      <p>As for their final model, they are approaching it as a classification problem of determining how many goals will be scored by the home and away team in a simulated World Cup Match. They then created a variable importance chart, and found that the team ability was the most important variable in determining the outcome of a World Cup Match. They predicted that Spain was the most likely to win the world cup with a 17.8% chance, while Germany was less likely with 17.1%, and Brazil was even less likely with 12.3%.</p>
+
+      <br/>
 
     </div> <!-- /col-md-10 -->
     </div> <!-- /row -->
