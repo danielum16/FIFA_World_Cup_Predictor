@@ -56,7 +56,7 @@
               <a href="#Imp2"><li>Improved Win/Loss/Draw (RF and Features Added)</li></a>
               <a href="#Imp3"><li>Improved Goal Differential (RF and Features Added)</li></a>
           </ol>
-          <a href="#Best"><li>Best Model</li></a>
+          <a href="#Imp4"><li>How Much Improvement?</li></a>
       </ol>
 
       <hr>
@@ -136,67 +136,23 @@
       <p>RF and Features Added</p>
 
       <p>Fig 6.</p>
-      <img class="img-fluid" src="images/HomeWin1.png">
+      <img class="img-fluid" src="images/ImpWLD.png">
       <p></p>
-      <p>The following map visualization is based on an adjusted dataframe with home advantage score calculated (function provided below).</p>
-      <p></p>
-      <p>Fig 7.</p>
-      <img class="img-fluid" src="images/HomeAwayMain.png">
-
-      <pre><code class="py">
-def get_home_team_advantage(goals_df, pval=0.05):
-    
-    # extract relevant columns
-    model_goals_df = goals_df[['HomeTeam','AwayTeam','FTHG','FTAG']]
-    # rename goal columns
-    model_goals_df = model_goals_df.rename(columns={'FTHG': 'HomeGoals', 'FTAG': 'AwayGoals'})
-
-    # reformat dataframe for the model
-    goal_model_data = pd.concat([model_goals_df[['HomeTeam','AwayTeam','HomeGoals']].assign(home=1).rename(
-                columns={'HomeTeam':'team', 'AwayTeam':'opponent','HomeGoals':'goals'}),
-               model_goals_df[['AwayTeam','HomeTeam','AwayGoals']].assign(home=0).rename(
-                columns={'AwayTeam':'team', 'HomeTeam':'opponent','AwayGoals':'goals'})])
-
-    # build poisson model
-    poisson_model = smf.glm(formula="goals ~ home + team + opponent", data=goal_model_data, 
-                            family=sm.families.Poisson()).fit()
-    # output model parameters
-    poisson_model.summary()
-    
-    return np.concatenate((np.array([poisson_model.params['home']]), 
-                    poisson_model.conf_int(alpha=pval).values[-1]))
-      </code></pre>
       
+      <h4 id="Imp3">Goal Differential Model (Improved)</h4>
+      <p>RF and Features Added</p>
+
+      <img class="img-fluid" src="images/ImpGD.png">
       <p></p>
-      <h4 id="eda-2">2) Match Success by Venue</h4>
-      <p>The following visualizations show the ratio of matches won by neutrality of venue.</p>
-
-<!--       <p>Fig 8.</p>
-      <img class="img-fluid" src="images/HomeWin4.png">
-      <p></p> -->
-
-
-      <p>Fig 8. and Fig 9.</p>
-      <img class="img-fluid" src="images/HomeWin5.png">
-      <p></p>
-<!--       <p>Fig 11. and Fig 12.</p>
-      <img class="img-fluid" src="images/HomeWin6.png">
-      <p></p> -->
 
       <hr>
 
-      <h2 id="eda-3">Population EDAs</h2>
-
-      <br/>
-
-      <h4 id="eda-3">1) Population vs Team/Player Quality</h4>
-      <p>The following two graphs were to demonstrate the effect of population on team rank and player quality (overall score).</p>
-
-      <p>Fig 10.</p>
-      <img class="img-fluid" src="images/Pop1.png">
+      <h2 id="Imp4">How much Improvement?</h4>
       <p></p>
-      <p>Fig 11.</p>
-      <img class="img-fluid" src="images/Pop2.png">
+      <p>Our Win/Loss/Draw Model Accuracy Went Up from 48% to 55%</p>
+      <p></p>
+
+      <p>Our Goal Differntial Model's R2 Score Went Up from 0.047 to 0.195</p>
 
       <hr>
 
