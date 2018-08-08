@@ -33,7 +33,7 @@
         </nav>
 
       <h1>Models</h1>
-      <p class="lead">The Development from a Baseline to the Final Ensemble Models</p>
+      <p class="lead">The Development from a Baseline to the Final Models</p>
 
       <hr>
 
@@ -55,6 +55,7 @@
                 </ol>
               <a href="#Imp2"><li>Improved Win/Loss/Draw (Features Added)</li></a>
               <a href="#Imp3"><li>Improved Goal Differential (Features Added)</li></a>
+              <a href="#Imp4"><li>Best Model - Adapted to the FIFA World Cup 2018</li></a>
           </ol>
           <a href="#ImpF"><li>How Much Improvement?</li></a>
       </ol>
@@ -135,7 +136,6 @@
       <h4 id="Imp2">Win/Loss/Draw Model (Improved)</h4>
       <p>Features Added</p>
 
-      <p>Fig 6.</p>
       <img class="img-fluid" src="images/ImpWLDLogit.png">
       <p></p>
       
@@ -147,27 +147,19 @@
 
       <hr>
 
-      <h4 id="Imp4">Win/Loss/Draw Model (Improved)</h4>
-      <p>Features Added</p>
+      <h4 id="Imp4">(Best Model) Adapted to the FIFA World Cup 2018</h4>
+      <p>Random Forest</p>
 
-      <p>Fig 6.</p>
-      <img class="img-fluid" src="images/IMPWLDLogit.png">
-      <p></p>
+      <img class="img-fluid" src="images/Best1.png">
+      <img class="img-fluid" src="images/Best2.png">
+      <img class="img-fluid" src="images/Best3.png">
+      <img class="img-fluid" src="images/Best4.png">
+      <img class="img-fluid" src="images/Best5.png">
       
-      <h4 id="Imp5">Goal Differential Model (Improved)</h4>
-      <p>Features Added</p>
-
-      <img class="img-fluid" src="images/IMPGD.png">
-      <p></p>
-
       <hr>
 
       <h2 id="ImpF">How Much Improvement?</h4>
-      <p></p>
-      <p>Our Win/Loss/Draw Model Accuracy Went Up from 48% to 54%</p>
-      <p></p>
-
-      <p>Our Goal Differential Model's r<sup>2</sup> Score Went Up from 0.047 to 0.195</p>
+      <p>From our classification baseline model's meager 53 percent accuracy, our final, fine-tuned model achieved an accuracy of 61.5 perent on all of the actual 2018 World Cup fixtures! That means that out of the 64 matches, it predicted the outcomes of about 40 of them correctly! That is a huge improvement, especially considering that we weren't even using FIFA rankings as a predictor, and the 2018 World Cup was so unpredictable. We believe that the reason for this improvement is due to using a Random Forest Classifier, instead of the simple Logistic Regression classifiers that we were using previously.</p>
 
       <hr>
 
