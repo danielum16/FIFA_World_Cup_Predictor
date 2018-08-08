@@ -33,61 +33,133 @@
         </nav>
 
       <h1>Models</h1>
-      <p class="lead">The Development from a Baseline to the Final Ensemble Model</p>
+      <p class="lead">The Development from a Baseline to the Final Ensemble Models</p>
 
       <hr>
 
       <h4>Contents</h4>
       <ol>
-          <a href="#introduction"><li>Baseline Model</li></a>
+          <a href="#Baseline"><li>Baseline Models</li></a>
           <ol>
-              <a href="#experiment"><li>Player Stats by Country with GDP and Population Data as Additional Features</li></a>
-              <a href="#experiment"><li>Goal Differential: Regression</li></a>
-              <a href="#experiment"><li>Win/Loss/Draw: Classification</li></a>
-              <a href="#experiment"><li>Expected Goals: Regression</li></a>
+              <a href="#Base1"><li>Data Cleaning</li></a>
+              <a href="#Base2"><li>Win/Loss/Draw: Classification</li></a>
+              <a href="#Base3"><li>Goal Differential: Regression</li></a>
           </ol>
 
-          <a href="#eda"><li>Final Ensemble Model</li></a>
+          <a href="#Improved"><li>Improved Models</li></a>
           <ol>
-              <a href="#eda-1"><li>Home and Away</li></a>
-              <a href="#eda-2"><li>Weather/Location/Altitude</li></a>
-              <a href="#eda-3"><li>Champion's Curse</li></a>
-              <a href="#eda-4"><li>Additional Player Features</li></a>
-              <a href="#eda-4"><li>Additional Country Features</li></a>
+              <a href="#Imp1"><li>Improved Win/Loss/Draw (RF and Added Features)</li></a>
+              <a href="#Imp2"><li>Improved Goal Differential (RF and Added Features)</li></a>
           </ol>
+          <a href="#Best"><li>Best Model</li></a>
       </ol>
 
       <hr>
 
-      <h2>Five grid tiers</h2>
-      <p>There are five tiers to the Bootstrap grid system, one for each range of devices we support. Each tier starts at a minimum viewport size and automatically applies to the larger devices unless overridden.</p>
+      <h2 id="Baseline">Baseline Models</h2>
 
-      <h2>Full width, single column</h2>
-      <p class="text-warning">No grid classes are necessary for full-width elements.</p>
+      <br/>
+
+      <h4 id="Base1">Data Cleaning (Baseline)</h4>
+
+      
+      <img class="img-fluid" src="images/Clean1.png">
+      <img class="img-fluid" src="images/Clean2.png">
+      <p></p>
+      <img class="img-fluid" src="images/Clean3.png">
+      <p></p>
+      <img class="img-fluid" src="images/Clean4.png">
+      <img class="img-fluid" src="images/Clean5.png">
+      <img class="img-fluid" src="images/Clean6.png">
+      <img class="img-fluid" src="images/Clean7.png">
+      
+      <p></p>
+      <h4 id="Base2">Win/Loss/Draw: Classification (Baseline)</h4>
+
+      <img class="img-fluid" src="images/WLBase1.png">
+      <img class="img-fluid" src="images/WLBase2.png">
+
+      <p></p>
+
+      <p></p>
+      <h4 id="Base3">Goal Differential: Regression (Baseline)</h4>
+      
+      <img class="img-fluid" src="images/GDBase1.png">
+      <img class="img-fluid" src="images/GdBase2.png">
+
+      <p></p>
 
       <hr>
 
-      <h2>Two columns with two nested columns</h2>
-      <p>Per the documentation, nesting is easy—just put a row of columns within an existing column. This gives you two columns <strong>starting at desktops and scaling to large desktops</strong>, with another two (equal widths) within the larger column.</p>
-      <p>At mobile device sizes, tablets and down, these columns and their nested columns will stack.</p>
+      <h2 id="eda-2">Home-Win Advantage EDAs</h2>
 
-      <small>Table 1. Summary of All Methods and Findings</small>
-      <img class="img-fluid" src="images/summary_table.png">
+      <br/>
+
+      <h4 id="eda-2">1) Neutral Games vs Biased Games</h4>
+      <p>The following piechart is simply to understand Kaggle's dataset better.</p>
+
+      <p>Fig 6.</p>
+      <img class="img-fluid" src="images/HomeWin1.png">
+      <p></p>
+      <p>The following map visualization is based on an adjusted dataframe with home advantage score calculated (function provided below).</p>
+      <p></p>
+      <p>Fig 7.</p>
+      <img class="img-fluid" src="images/HomeAwayMain.png">
 
       <pre><code class="py">
-df = pd.read_csv('Data/dataAll_csv8_withMM.csv')
+def get_home_team_advantage(goals_df, pval=0.05):
+    
+    # extract relevant columns
+    model_goals_df = goals_df[['HomeTeam','AwayTeam','FTHG','FTAG']]
+    # rename goal columns
+    model_goals_df = model_goals_df.rename(columns={'FTHG': 'HomeGoals', 'FTAG': 'AwayGoals'})
 
-df["slope_class"] = 0
-df["slope_class"][df['ref_slope'] < 0] = -1
-df["slope_class"][df['ref_slope'] == 0]= 0
-df["slope_class"][df['ref_slope'] > 0]= 1
+    # reformat dataframe for the model
+    goal_model_data = pd.concat([model_goals_df[['HomeTeam','AwayTeam','HomeGoals']].assign(home=1).rename(
+                columns={'HomeTeam':'team', 'AwayTeam':'opponent','HomeGoals':'goals'}),
+               model_goals_df[['AwayTeam','HomeTeam','AwayGoals']].assign(home=0).rename(
+                columns={'AwayTeam':'team', 'HomeTeam':'opponent','AwayGoals':'goals'})])
+
+    # build poisson model
+    poisson_model = smf.glm(formula="goals ~ home + team + opponent", data=goal_model_data, 
+                            family=sm.families.Poisson()).fit()
+    # output model parameters
+    poisson_model.summary()
+    
+    return np.concatenate((np.array([poisson_model.params['home']]), 
+                    poisson_model.conf_int(alpha=pval).values[-1]))
       </code></pre>
+      
+      <p></p>
+      <h4 id="eda-2">2) Match Success by Venue</h4>
+      <p>The following visualizations show the ratio of matches won by neutrality of venue.</p>
+
+<!--       <p>Fig 8.</p>
+      <img class="img-fluid" src="images/HomeWin4.png">
+      <p></p> -->
+
+
+      <p>Fig 8. and Fig 9.</p>
+      <img class="img-fluid" src="images/HomeWin5.png">
+      <p></p>
+<!--       <p>Fig 11. and Fig 12.</p>
+      <img class="img-fluid" src="images/HomeWin6.png">
+      <p></p> -->
 
       <hr>
 
-      <h2>Mixed: mobile and desktop</h2>
-      <p>The Bootstrap v4 grid system has five tiers of classes: xs (extra small), sm (small), md (medium), lg (large), and xl (extra large). You can use nearly any combination of these classes to create more dynamic and flexible layouts.</p>
-      <p>Each tier of classes scales up, meaning if you plan on setting the same widths for xs and sm, you only need to specify xs.</p>
+      <h2 id="eda-3">Population EDAs</h2>
+
+      <br/>
+
+      <h4 id="eda-3">1) Population vs Team/Player Quality</h4>
+      <p>The following two graphs were to demonstrate the effect of population on team rank and player quality (overall score).</p>
+
+      <p>Fig 10.</p>
+      <img class="img-fluid" src="images/Pop1.png">
+      <p></p>
+      <p>Fig 11.</p>
+      <img class="img-fluid" src="images/Pop2.png">
 
       <hr>
 
