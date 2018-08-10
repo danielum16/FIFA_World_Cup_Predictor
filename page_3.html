@@ -42,6 +42,7 @@
           <a href="#Lit1"><li>Probabilistic Forecasts for the 2018 FIFA World Cup Based on the Bookmaker Consensus Model</li></a>
           <a href="#Lit2"><li>On Elo Based Prediction Models for the FIFA World Cup</li></a>
           <a href="#Lit3"><li>Prediction of the FIFA World Cup 2018 – A random forest approach with an emphasis on estimated teamability parameters</li></a>
+          <a href="#Informed"><li>How this Informed our Model</li></a>
       </ol>
       <p>We looked at the State-of-the-Art approaches before diving into modeling the World Cup with the data we had collected. This was done in order to build a foundation for our model such that it could excel in areas that previous models had trouble with.</p>
 
@@ -81,6 +82,10 @@
       <p>In terms of data, this paper utilized the available data from FIFA from the past 8 World Cups, with the reasoning that older data is much obsolete and unnecessary. They also use the FIFA ranking dataset. Finally they use a team squad strength dataset, that was calculated with a separate Poisson ranking model.</p>
 
       <p>As for their final model, they are approaching it as a classification problem of determining how many goals will be scored by the home and away team in a simulated World Cup Match. They then created a variable importance chart, and found that the team ability was the most important variable in determining the outcome of a World Cup Match. They predicted that Spain was the most likely to win the world cup with a 17.8% chance, while Germany was less likely with 17.1%, and Brazil was even less likely with 12.3%.</p>
+
+
+      <h4 id="Informed">How this Informed our Model</h2>
+      <p>Although most of the features we chose were through our EDAs and general knowledge about football, some of our features were informed through the literature review (especially the geography and player skills features). Furthermore, as Patrick mentioned, random forest turned out to be the best method for our predictive model, and this was also backed up by the literature.</p>
 
       <br/>
 

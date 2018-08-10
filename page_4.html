@@ -41,7 +41,6 @@
       <ol>
           <a href="#Baseline"><li>Baseline Models</li></a>
           <ol>
-              <a href="#Base1"><li>Data Cleaning</li></a>
               <a href="#Base2"><li>Win/Loss/Draw: Classification</li></a>
               <a href="#Base3"><li>Goal Differential: Regression</li></a>
           </ol>
@@ -51,7 +50,7 @@
               <a href="#Imp1"><li>Additional Features</li></a>
                 <ol>
                     <a href="#Imp1"><li>Outline</li></a>
-                    <a href="#Imp1b"><li>Data Cleaning</li></a>
+                    <a href="#Imp1b"><li>Building New Training Set for Added Features</li></a>
                 </ol>
               <a href="#Imp2"><li>Improved Win/Loss/Draw (Features Added)</li></a>
               <a href="#Imp3"><li>Improved Goal Differential (Features Added)</li></a>
@@ -66,34 +65,30 @@
 
       <br/>
 
-      <h4 id="Base1">Data Cleaning (Baseline)</h4>
+      <p>*We chose to create baseline models for 'Win/Loss/Draw' and 'Goal Differential' because these cover the classification and regression model types we learned in class (respectively).</p>
 
-      
-      <img class="img-fluid" src="images/Clean1.png">
-      <img class="img-fluid" src="images/Clean2.png">
-      <p></p>
-      <img class="img-fluid" src="images/Clean3.png">
-      <p></p>
-      <img class="img-fluid" src="images/Clean4.png">
-      <img class="img-fluid" src="images/Clean5.png">
-      <img class="img-fluid" src="images/Clean6.png">
-      <img class="img-fluid" src="images/Clean7.png">
-      
-      <p></p>
+      <br/>
+
       <h4 id="Base2">Win/Loss/Draw: Classification (Baseline)</h4>
 
       <img class="img-fluid" src="images/WLBase1.png">
       <img class="img-fluid" src="images/WLBase2.png">
+      <p></p>
 
+      <p>*The Win/Loss/Draw Classification model did a pretty good job of classifying the home team's win, loss or draw (based on the created testing set). The accuracy was almost 50% while the accuracy of the trivial model would range from 24% to 33%.</p>
+      <br/>
       <p></p>
 
       <p></p>
       <h4 id="Base3">Goal Differential: Regression (Baseline)</h4>
       
       <img class="img-fluid" src="images/GDBase1.png">
-      <img class="img-fluid" src="images/GDBase2.png">
-
+      <img class="img-fluid" src="images/GDBase2new.png">
+      
       <p></p>
+
+      <p>*The Goal Differential Regression model did a very poor job, with an R2 accuracy of 0.0473. We will try to improve this model by adding more features and using a better modeling method.</p>
+      <br/>
 
       <hr>
 
@@ -103,31 +98,24 @@
 
       <img class="img-fluid" src="images/AddtlFeatures.png">
 
+      <p>*The features we chose were informed by our EDAs, general knowledge about football, and also through literature review.</p>
+      <br/>
+
       <hr> 
 
-      <h2 id="Imp1b">Additional Features Data Cleaning</h2>
+      <h2 id="Imp1b">Building New Training Set for Added Features</h2>
       
       <p></p>
 
-      <img class="img-fluid" src="images/ImpClean1.png">
-      <img class="img-fluid" src="images/ImpClean2.png">
-      <img class="img-fluid" src="images/ImpClean3.png">
-      <img class="img-fluid" src="images/ImpClean4.png">
-      <img class="img-fluid" src="images/ImpClean6.png">
-      <img class="img-fluid" src="images/ImpClean7.png">
-      <img class="img-fluid" src="images/ImpClean8.png">
-      <img class="img-fluid" src="images/ImpClean9.png">
-      <img class="img-fluid" src="images/ImpClean10.png">
-      <img class="img-fluid" src="images/ImpClean11.png">
-      <img class="img-fluid" src="images/ImpClean12.png">
-      <img class="img-fluid" src="images/ImpClean13.png">
-      <img class="img-fluid" src="images/ImpClean14.png">
-      <img class="img-fluid" src="images/ImpClean15.png">
+      <img class="img-fluid" src="images/ImpClean15new.png">
       <img class="img-fluid" src="images/ImpClean16.png">
-      <img class="img-fluid" src="images/ImpClean17.png">
       <img class="img-fluid" src="images/ImpClean18.png">
-      <img class="img-fluid" src="images/ImpClean19.png">
-      <img class="img-fluid" src="images/ImpClean20.png">
+    
+      <p></p>
+
+      <p>*At this point, we have a csv file called 'final_train_set.csv' where all our 33 features are aggregated and put into a form that our models can read, feed in, and train on.</p>
+      <br/>
+      <p></p>
 
       <hr> 
 
@@ -135,6 +123,12 @@
 
       <h4 id="Imp2">Win/Loss/Draw Model (Improved)</h4>
       <p>Features Added</p>
+
+      <p></p>
+
+      <p>*We will now add the 33 features to the basic ones included in our baseline model and train on this expanded dataset in hopes that the accuracy and R2 value will improve.</p>
+      <br/>
+      <p></p>
 
       <img class="img-fluid" src="images/IMPWLDLogit.png">
       <p></p>
@@ -145,15 +139,19 @@
       <img class="img-fluid" src="images/IMPGD.png">
       <p></p>
 
+      <p></p>
+
+      <p>*When comparing the baseline model with our new one with added features, we see a significant improvement! The classification Win/Loss/Draw model went up from 48% to 53% and the regression Goal Difference model went up from 0.0473 to 0.195 (R2 value).</p>
+      <br/>
+      <p></p>
+
       <hr>
 
       <h4 id="Imp4">(Best Model) Adapted to the FIFA World Cup 2018</h4>
       <p>Random Forest</p>
 
       <img class="img-fluid" src="images/Best1.png">
-      <img class="img-fluid" src="images/Best2.png">
       <img class="img-fluid" src="images/Best3.png">
-      <img class="img-fluid" src="images/Best4.png">
       <img class="img-fluid" src="images/Best5.png">
       
       <hr>
