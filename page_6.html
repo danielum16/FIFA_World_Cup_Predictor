@@ -33,8 +33,8 @@
             &nbsp;|&nbsp;<span>Summary</span>
         </nav>
 
-      <h1>Results and Conclusion</h1>
-      <p class="lead">Using the 2018 FIFA World Cup Results to Test our Final (Best) Model</p>
+      <h1>Summary</h1>
+      <p class="lead">Crafting a Summary Narrative of our Analysis</p>
 
       <hr>
 
@@ -59,7 +59,7 @@
 
       <p>The World Cup is the most prominent sporting event in the world, with over 1 billion people tuning in. The bare-bones nature of soccer allows for it to be easily understood and adopted, allows for it to be played by almost anyone (regardless of socioeconomic background), and it’s exciting atmosphere allows for it to be enjoyed by all. The World Cup has become a worldwide cultural phenomenon and the stakes to win are high; the winning nation receives a great deal of international fame and prestige. Recently, the World Cup has been growing in international recognition and viewership, and even though the World Cup has garnered such a huge viewer-base, the state of analytics on the World Cup (and soccer, in general) matches is archaic, relative to other sports such as Basketball and American Football. Soccer and World Cup analytics are on the rise, however, within the scope of this project, we aimed to make a prediction model (which we were able to complete), to contribute to these analytics even further.</p>
 
-      <br/>
+      <hr>
 
       <h2 id="Two">Motivation for predicting the World Cup</h2>
 
@@ -67,7 +67,7 @@
 
       <p>Shiv is an avid soccer player and Daniel, although he doesn’t play soccer, follows professional and college soccer enthusiastically. Krupesh is also very interested in sports statistics and regularly plays fantasy sports like NFL and Cricket. Pegah is also a fan of soccer and has been following 2018 World Cup with such passion. We would love to delve into the world of sports analytics, and become more informed on how professional statisticians ‘conjure-up’ their predictions, while also learning why many of their guesses fail. We are excited to dig-into the many grey-area factors that are often overlooked by common World Cup match predictions and (hopefully) create a great model that creates accurate predictions and allows us to impress our friends at future World Cup viewing parties.</p>
 
-      <br/>
+      <hr>
 
       <h2 id="Three">Description of Initial Data (including cleansing procedures)</h2>
 
@@ -75,7 +75,7 @@
 
       <p>The first provided dataset consisted of player statistics from 17994 current professional soccer players, representing 190 countries. It included numerical variables such as overall score and potential, but also categorical variables such as league, and nationality. The second provided dataset consisted of head-to-head matchups between national countries that gave the venue location, the name of the home and away team, and the number of goals for each team.The third dataset was a FIFA ranking dataset that ranks all of the national soccer teams by points.  To clean them, and use them as feature sets, we just averaged the player statistics by country, and plugged them into the head-to-head dataset.</p>
 
-      <br/>
+      <hr>
 
       <h2 id="Four">Baseline models (created with the above datasets)</h2>
 
@@ -83,7 +83,7 @@
 
       <p>We constructed two baseline models that incorporated features from the aforementioned given datasets. We constructed the feature set for these baseline models by aggregating the player statistics for each country, and then replacing these country statistics for the country name in the head-to-head dataset. We then performed an 80-20 train-test-split, to train both models. The first model was a W/L/D classification model achieved a meager 48% test set classification accuracy. We used logistic regression as a classification model architecture and used the gridsearchCV method provided by sklearn to tune the hyperparameters. The response variable in this model’s case was whether the home team won, drew, or lost to the away team. The second baseline model was a Goal Differential regression model which achieved a similarly poor r^2 score of 0.04. We used linear regression as a regression model architecture and again used gridsearchCV to tune the hyperparameters. The response variable was the score difference between the home and away team. We didn’t use the expected points baseline model, because we felt that one classification and one regression model would be enough to differentiate between.</p>
 
-      <br/>
+      <hr>
 
       <h2 id="Five">Interesting Investigations/Additional features + EDA</h2>
 
@@ -111,9 +111,7 @@
 
       <img class="img-fluid" src="images/Wealth4_new.png">
 
-      <p></p>
-
-      <br/>
+      <hr>
 
       <h2 id="Six">Improved Models</h2>
 
@@ -121,7 +119,7 @@
 
       <p>We proceeded to improve upon our baseline models by re-running our baseline models with this expanded feature set: Our classification model achieved a test classification accuracy of 55%, while the regression model achieved an r^2 score of 0.19. We improved 7% in the classification model test set classification accuracy and 0.15 in the regression model r^2 score. We determined that the all of the predictors were important in both of the models through stepwise visualizations.</p>
 
-      <br/>
+      <hr>
 
       <h2 id="Seven">Best Model</h2>
 
@@ -129,7 +127,7 @@
 
       <p>While these improvements were major, we still feel that the results didn’t improve upon the predictive power of the models found in the literature, so there was still another step to go. In this final model, we aimed to find the best model architecture and hyperparameters to optimize performance on our expanded feature set. After consulting the literature (and Patrick) and then performing lots and lot of cross-validation, we found that a Random Forest Model with a length of 5 performed the best, achieving a test classification accuracy of 61.5% for the classification model. In this final model, we were able to exclude FIFA ratings as a predictor, making it even more robust on the World Cup 2018 dataset (which we used as a test set), where it predicted the outcomes of 40 out of the 64 matches correctly!</p>
       
-      <br/>
+      <hr>
 
       <h2 id="Eight">Final Analysis, Conclusion, and Future Directions</h2>
 
@@ -139,7 +137,7 @@
 
       <p>As always, the future extension of work is to find and model even more externalities that affect the outcomes of these world cup matches. This goes hand-in-hand with gaining more domain knowledge and including more relevant predictors. Thus, our future work will mainly be diving deeper into two areas: relevant feature-set expansion, and model selection. In retrospect, this was a fantastic introduction to a real-life application to data science. It was not only informative and a great learning experience, but it was also really fun! Group 25 would like to thank Patrick especially, for all of the time and effort he has put into our group to make sure that our project was smooth and successful.</p>
       
-      <br/>
+      <hr>
 
       <h2 id="Nine">Results (for reference)</h2>
 
@@ -169,8 +167,6 @@
 
       <p>Training Classification Accuracy: 66%</p>
       <p>Test (World Cup 2018 dataset) Classification Accuracy: 61.5%</p>
-
-      <br/>
 
       <hr>
 
