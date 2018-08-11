@@ -37,26 +37,65 @@
 
       <hr>
 
-      <h2>Five grid tiers</h2>
-      <p>There are five tiers to the Bootstrap grid system, one for each range of devices we support. Each tier starts at a minimum viewport size and automatically applies to the larger devices unless overridden.</p>
-
-      <h2>Full width, single column</h2>
-      <p class="text-warning">No grid classes are necessary for full-width elements.</p>
+      <h4>Contents</h4>
+      <ol>
+          <a href="#Summary"><li>Summary</li></a>
+          <a href="#Results"><li>Results</li></a>
+          <ol>
+              <a href="#GoalBase"><li>Goal Difference (Baseline)</li></a>
+              <a href="#WinBase"><li>Win/Loss/Draw (Baseline)</li></a>
+              <a href="#GoalImp"><li>Goal Difference (Improved)</li></a>
+              <a href="#WinImp"><li>Win/Loss/Draw (Improved)</li></a>
+              <a href="#Best"><li>Win/Loss/Draw (Best)</li></a>
+          </ol>
+          <a href="#Conclusion"><li>Conclusion & Future Work</li></a>
+      </ol>
 
       <hr>
 
-      <h2>Two columns with two nested columns</h2>
-      <p>Per the documentation, nesting is easy—just put a row of columns within an existing column. This gives you two columns <strong>starting at desktops and scaling to large desktops</strong>, with another two (equal widths) within the larger column.</p>
-      <p>At mobile device sizes, tablets and down, these columns and their nested columns will stack.</p>
+      <h2 id="Summary">Summary</h2>
 
-      <small>Table 1. Summary of All Methods and Findings</small>
-      <img class="img-fluid" src="images/summary_table.png">
+      <br/>
 
-      <hr>
+      <p>In our quest to model the notoriously unpredictable outcome of the World Cup, we first sought to differentiate between the significant and insignificant factors in the data that were given to us by visualizing and identifying any trends. Through this initial exploratory data analysis, we were able to gain valuable insights, which we took into consideration while creating our models, weighting the importance of the predictors accordingly. Our first finding was a slight correlation between the overall wealth of different clubs, and the player’s age and quality, showing that wealthy clubs generally had more skilled players. Our final explorations of the given data were player-wise analyses, in which we found that a country’s defensive prowess was the most significant predictor of their success. After, we constructed two baseline models that incorporated features from the aforementioned given datasets. We constructed the feature set for these baseline models by aggregating the player statistics for each country. The first W/L/D classification model achieved a meager 48% classification accuracy, which wasn’t much better than a trivial model simply predicting the home team won every time. The second Goal Differential Classification model achieved a similarly poor r^2 score of 0.04.</p>
 
-      <h2>Mixed: mobile and desktop</h2>
-      <p>The Bootstrap v4 grid system has five tiers of classes: xs (extra small), sm (small), md (medium), lg (large), and xl (extra large). You can use nearly any combination of these classes to create more dynamic and flexible layouts.</p>
-      <p>Each tier of classes scales up, meaning if you plan on setting the same widths for xs and sm, you only need to specify xs.</p>
+      <p>With our bare-bones models completed, we began to scrape and analyze new feature to enrich our feature set. First, we scraped country-level statistics, such as the Gross Domestic Product, and the total population. We found a weak, but existent correlation between the wealth and FIFA rating of the country. We also found that mid-sized countries generally had the most skilled player pools. We next explored the truth of the home-country advantage, finding that it was extremely prevalent, especially in areas with low official regulation. In addition, generalized the home-country advantage by confederation, and found South America and Africa to have the biggest home-country advantages. Next, we examined the so-called “Champion’s Curse”, which we found to be a very important factor.We then scraped game-day statistics such as elevation, longitude, and latitude of the match, and found that elevation had the most significant impact on increasing the home team’s score. Finally, given that our initial player dataset didn’t include enough relevant scores/ratings, we decided to scrape more: age, height, weight, value, wage, overall FIFA score, potential FIFA score, uniqueness of play, pass accuracy, shot accuracy, average number of passes, dribbling success rate, defensive rating, physicality, finishing ability, ball control, acceleration, sprint speed, agility, shot power, stamina, strength, penalty, and current position (categorically reported). We proceeded to improve upon our baseline models by using this expanded feature set, and we did: Our classification model achieved a test classification accuracy of 55%, while the regression model achieved an r^2 score of 0.19.</p>
+
+      <p>While these improvements were major, we still feel that the results didn’t improve upon the predictive power of the models found in the literature, so there was still another step to go. In this final model, we aimed to find the best model architecture and hyperparameters to optimize performance on our expanded feature set. After consulting the literature (and Patrick) and then performing lots and lot of cross-validation, we found that a Random Forest Model with a length of 5 performed the best, achieving a test classification accuracy of 61.5% for the classification model. In this final model, we were able to exclude FIFA ratings as a predictor, making it even more robust on the World Cup 2018 dataset, where it predicted the outcomes of  40 out of the 64 matches correctly!</p>
+      <br/>
+
+      <h2 id="Results">Results</h2>
+
+      <h4>Goal Difference (Baseline Model)</h4>
+
+      <p>Training r^2 score: 0.09</p>
+      <p>Test r^2 score: 0.04</p>
+
+      <h4>Win/Loss/Draw (Baseline Model)</h4>
+
+      <p>Training Classification Accuracy: 51%</p>
+      <p>Test Classification Accuracy: 48%</p>
+
+      <h4>Goal Difference (Improved Model)</h4>
+
+      <p>Training r^2 score: 0.32</p>
+      <p>Test r^2 score: 0.019</p>
+
+      <h4>Win/Loss/Draw (Improved Model)</h4>
+
+      <p>Training Classification Accuracy: 57%</p>
+      <p>Test Classification Accuracy: 55%</p>
+
+      <h4>Win/Loss/Draw (Best Model)</h4>
+
+      <p>Training Classification Accuracy: 66%</p>
+      <p>Test (World Cup 2018 dataset) Classification Accuracy: 61.5%</p>
+
+
+      <h2 id="Results">Conclusion and Future Work</h2>
+
+      <p>In this project, we were able to create a final prediction model with State-of-the art predictive power, by building off of previous work that had been done in the field, as well as creating a large feature set of relevant and significant features, and utilizing the optimal architecture and hyperparameters (Random Forest classifier with a depth of 5). Impressively, our model was able to predict the outcome (win/loss/draw) of 40 out of the 64 total World Cup Matches in 2018, using the 32-feature expanded feature set we created! Interestingly, we found that this classification method was more accurate than the goal difference method, while training on the same data. This is most likely because the goal difference model almost never predicted exactly 0, so the number of draws was dramatically reduced. We were able to fix this (to some extent) by increasing the range of draw values, but still preferred the classification model because of its simplicity in interpretation.</p>
+      <p>As always, the future extension of work is to find and model even more externalities that affect the outcomes of these world cup matches. This goes hand-in-hand with gaining more domain knowledge and including more relevant predictors. Thus, our future work will mainly be diving deeper into two areas: relevant feature-set expansion, and model selection. In retrospect, this was a fantastic introduction to a real-life application to data science. It was not only informative and a great learning experience, but it was also really fun! Group 25 would like to thank Patrick especially, for all of the time and effort he has put into our group to make sure that our project was smooth and successful.</p>
 
       <hr>
 
