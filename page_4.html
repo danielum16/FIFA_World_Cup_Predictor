@@ -105,9 +105,10 @@
       <hr> 
 
       <h4>Poission Model for Home Advantage Score</h4>
-      <p>*Because this was a composite scoring system we created, we have decided to add code to our models section to demonstrate how it works.</p>
 
       <img class="img-fluid" src="images/Poisson.png">
+
+      <p>*The code snippet above is meant to create a Poisson Regression to model the distribution between the difference in the home and away scores in each head-to-head game. The Poisson distribution works to calculate this "home advantage score" because of the fact that it will find a probabilistic prediction of a number of events (in this case, goals) happening in a specific time period (in this case, 90 mins) based on how often the events occur, on average. There are a couple key assumptions that this model relies on: first, the number of goals is independent of time (that is, goals aren't scored more often further in the game). Second, the number of goals scored by each team are considered independent events. Following these two assumptions, and a little manipulation, our code will return the number of times more goals the home team is predicted to score than the away team.</p>
 
       <hr> 
 
