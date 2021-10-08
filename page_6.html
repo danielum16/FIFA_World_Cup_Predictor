@@ -34,7 +34,7 @@
         </nav>
 
       <h1>Summary</h1>
-      <p class="lead">Crafting a Summary Narrative of our Analysis</p>
+      <p class="lead">Summary Narrative of the Analysis</p>
 
       <hr>
 
@@ -73,7 +73,7 @@
 
       <br/>
 
-      <p>With our bare-bones models completed, we began to scrape and analyze new feature to enrich our feature set. First, we explored the truth of the home-country advantage, finding that it was extremely prevalent, especially in areas with low official regulation. In addition, generalized the home-country advantage by confederation, and found South America and Africa to have the biggest home-country advantages. We were able to model these and neutral-site advantages, by using a Poisson helper model, which modeled the distribution in home and away team goals in different countries.</p>
+      <p>With the bare-bones models completed, we began to scrape and analyze new feature to enrich the feature set. First, we explored the truth of the home-country advantage, finding that it was extremely prevalent, especially in areas with low official regulation. In addition, generalized the home-country advantage by confederation, and found South America and Africa to have the biggest home-country advantages. We were able to model these and neutral-site advantages, by using a Poisson helper model, which modeled the distribution in home and away team goals in different countries.</p>
 
       <img class="img-fluid" src="images/HomeAwayMain.png">
       <p></p>
@@ -109,7 +109,7 @@
 
       <br/>
 
-      <p>While these improvements were major, we still feel that the results didn’t improve upon the predictive power of the models found in the literature, so there was still another step to go. In this final model, we aimed to find the best model architecture and hyperparameters to optimize performance on our expanded feature set. After consulting the literature and then performing lots and lot of cross-validation, we found that a Random Forest Model with a length of 5 performed the best, achieving a test classification accuracy of 61.5% for the classification model. In this final model, we were able to exclude FIFA ratings as a predictor, making it even more robust on the World Cup 2018 dataset (which we used as a test set), where it predicted the outcomes of 40 out of the 64 matches correctly!</p>
+      <p>While these improvements were major, we still feel that the results didn’t improve upon the predictive power of the models found in the literature, so there was still another step to go. In this final model, we aimed to find the best model architecture and hyperparameters to optimize performance on the expanded feature set. After consulting the literature and then performing lots and lot of cross-validation, we found that a Random Forest Model with a length of 5 performed the best, achieving a test classification accuracy of 61.5% for the classification model. In this final model, we were able to exclude FIFA ratings as a predictor, making it even more robust on the World Cup 2018 dataset (which we used as a test set), where it predicted the outcomes of 40 out of the 64 matches correctly!</p>
       
       <hr>
 
@@ -117,9 +117,9 @@
 
       <br/>
 
-      <p>In this project, we were able to create a final prediction model with State-of-the art predictive power, by building off of previous work that had been done in the field, as well as creating a large feature set of relevant and significant features, and utilizing the optimal architecture and hyperparameters (Random Forest classifier with a depth of 5). Impressively, our model was able to predict the outcome (win/loss/draw) of 40 out of the 64 total World Cup Matches in 2018, using the 32-feature expanded feature set we created! Interestingly, we found that this classification method was more accurate than the goal difference method, while training on the same data. This is most likely because the goal difference model almost never predicted exactly 0, so the number of draws was dramatically reduced. We were able to fix this (to some extent) by increasing the range of draw values, but still preferred the classification model because of its simplicity in interpretation. </p>
+      <p>In this project, we were able to create a final prediction model with State-of-the art predictive power, by building off of previous work that had been done in the field, as well as creating a large feature set of relevant and significant features, and utilizing the optimal architecture and hyperparameters (Random Forest classifier with a depth of 5). Impressively, the model was able to predict the outcome (win/loss/draw) of 40 out of the 64 total World Cup Matches in 2018, using the 32-feature expanded feature set we created! Interestingly, we found that this classification method was more accurate than the goal difference method, while training on the same data. This is most likely because the goal difference model almost never predicted exactly 0, so the number of draws was dramatically reduced. We were able to fix this (to some extent) by increasing the range of draw values, but still preferred the classification model because of its simplicity in interpretation. </p>
 
-      <p>As always, the future extension of work is to find and model even more externalities that affect the outcomes of these world cup matches. This goes hand-in-hand with gaining more domain knowledge and including more relevant predictors. Thus, our future work will mainly be diving deeper into two areas: relevant feature-set expansion, and model selection. In retrospect, this was a fantastic introduction to a real-life application to data science. It was not only informative and a great learning experience, but it was also really fun! Group 25 would like to thank Patrick especially, for all of the time and effort he has put into our group to make sure that our project was smooth and successful.</p>
+      <p>As always, the future extension of work is to find and model even more externalities that affect the outcomes of these world cup matches. This goes hand-in-hand with gaining more domain knowledge and including more relevant predictors. Thus, the future work will mainly be diving deeper into two areas: relevant feature-set expansion, and model selection. In retrospect, this was a fantastic introduction to a real-life application to data science.</p>
       
       <hr>
 
